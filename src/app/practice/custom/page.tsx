@@ -1,0 +1,4 @@
+ "use client";
+import {useState} from "react";
+import TypingTest from "@/components/TypingTest";
+export default function CustomPracticePage(){const [text,setText]=useState("Paste your own text here to practice typing accuracy and speed.");return <main className="shell"><div className="kicker">Custom practice</div><h1>Practice your own text</h1><p className="muted">Paste a passage you want to practice. The starter typing engine uses built-in passages; custom passage integration is the next implementation step.</p><textarea className="field" rows={5} value={text} onChange={e=>setText(e.target.value)} maxLength={20000}/><p className="muted">{text.length} characters · The custom passage editor is UI-ready; connect it to the scoring engine before launch.</p><TypingTest initialSeconds={300}/></main>}

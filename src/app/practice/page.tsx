@@ -1,0 +1,2 @@
+import TypingTest from "@/components/TypingTest";
+export default function PracticePage(){return <main className="shell"><div className="kicker">Practice room</div><h1>Practice without pressure</h1><p className="muted">Use this room to practice common sentences and business-style text. Procedural drills can be expanded as the reviewed content library grows.</p><TypingTest initialSeconds={300}/></main>}

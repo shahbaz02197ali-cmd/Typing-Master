@@ -1,0 +1,2 @@
+import TypingTest from "@/components/TypingTest";
+export default function TestPage(){return <main className="shell"><div className="kicker">Typing test</div><h1>Measure your typing</h1><p className="muted">Choose a duration, type the passage, and review your speed, accuracy and errors.</p><TypingTest/></main>}
