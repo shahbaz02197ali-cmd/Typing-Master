@@ -6,7 +6,15 @@ export async function GET(request: NextRequest) {
   const code = searchParams.get("code");
   const providerError = searchParams.get("error_description") || searchParams.get("error");
   const next = searchParams.get("next") ?? "/dashboard";
-  const safeNext = next.startsWith("/") && !next.startsWith("//") ? next : "/dashboard";
+  let safeNext = "/dashboard";
+  try {
+    const destination = new URL(next, origin);
+    if (destination.origin === origin && next.startsWith("/") && !next.startsWith("//") && !next.includes("\\\\")) {
+      safeNext = destination.pathname + destination.search + destination.hash;
+    }
+  } catch {
+    safeNext = "/dashboard";
+  }
   if (providerError) {
     const login = new URL("/login", origin);
     login.searchParams.set("error", "oauth_denied");
