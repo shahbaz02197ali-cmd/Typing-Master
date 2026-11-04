@@ -27,7 +27,7 @@ Apply migrations in this order in the Supabase SQL Editor or migration runner:
 
 Migration files committed to GitHub are not automatically applied to the hosted Supabase project. Verify the migration history and RLS policies in the target project.
 
-## Account types
+## Typing content library\nThe practice workspace includes 33 selectable content packs across stories, mystery, science fiction, fantasy, poetry, nature, history, science, technology, business writing, finance, travel, sports, lifestyle, essays, news, digital literacy and more. Practice lengths range from 200 to 20,000 words, with paragraph boundaries preserved. Custom practice accepts pasted text up to 120,000 characters. Long-form selections are assembled from the curated paragraph sets; they are practice documents, not a claim of 20,000 words of separately edited literary chapters.\n\n## Account types
 Email signup offers exactly two learner types: Student and College Student. Existing profiles default to Student. OAuth profile completion still needs to be implemented before account-type-specific onboarding is considered complete.
 
 ## Current product status
