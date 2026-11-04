@@ -24,6 +24,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <div className="header-actions"><Link href="/login" className="signin-link">Sign in</Link><Link href="/signup" className="btn btn-primary header-join">Join free <span>↗</span></Link></div>
     </header>
     {children}
-    <footer className="site-footer"><Link href="/" className="footer-brand">TYPING MASTER<span> / TRAINING ARENA</span></Link><span>Practice with purpose. Improve every day.</span><span>© {new Date().getFullYear()} Typing Master</span></footer>
+    <footer className="site-footer"><Link href="/" className="footer-brand">TYPING MASTER<span> / TRAINING ARENA</span></Link><span>Practice with purpose. Improve every day.</span><div className="footer-legal"><Link href="/privacy">Privacy Policy</Link><Link href="/terms">Terms of Service</Link></div><span>© {new Date().getFullYear()} Typing Master</span></footer>
   </body></html>;
 }
