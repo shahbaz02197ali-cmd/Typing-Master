@@ -1,3 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {lessons} from "@/lib/content";
-export default function LearnPage(){return <main className="shell"><div className="kicker">Typing tutor</div><h1>Learn typing A–Z</h1><p className="muted">Work through the curriculum from home-row positioning to numbers, punctuation and office documents.</p><div className="grid">{lessons.map((l,i)=><article className="card" key={l.id}><span className="pill">{l.level} · Lesson {i+1}</span><h2>{l.title}</h2><p className="muted">{l.description}</p><p><b>Focus:</b> {l.keys}</p><Link className="btn" href={`/learn/${l.id}`}>Start lesson</Link></article>)}</div></main>}
+
+export const metadata: Metadata = {
+  title: "Free Typing Lessons for Beginners and All Levels",
+  description: "Learn touch typing step by step with guided keyboard lessons covering home row, letters, numbers, punctuation and practical typing skills.",
+  alternates: { canonical: "/learn" },
+};
+
+export default function LearnPage(){return <main className="shell"><div className="kicker">Typing tutor</div><h1>Free typing lessons: Learn typing A–Z</h1><p className="muted">Work through the curriculum from home-row positioning to numbers, punctuation and office documents.</p><div className="grid">{lessons.map((l,i)=><article className="card" key={l.id}><span className="pill">{l.level} · Lesson {i+1}</span><h2>{l.title}</h2><p className="muted">{l.description}</p><p><b>Focus:</b> {l.keys}</p><Link className="btn" href={`/learn/${l.id}`}>Start lesson</Link></article>)}</div></main>}
