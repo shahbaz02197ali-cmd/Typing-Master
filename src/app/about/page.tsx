@@ -1,1 +1,9 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About Typing Master",
+  description: "Learn about Typing Master, a platform for improving typing speed and accuracy through lessons, practice passages and timed typing tests.",
+  alternates: { canonical: "/about" },
+};
+
 export default function AboutPage(){return <main className="shell"><div className="kicker">About</div><h1>Practice that builds confidence</h1><div className="card"><p className="muted">Typing Master helps learners build accuracy and speed through structured lessons, practice passages, timed tests and challenges.</p><h2>Privacy and fair play</h2><p className="muted">Guest names are display names, not identity verification. Local progress stays in this browser unless a backend is configured. Public rankings and certificates should only be issued from validated records. Certificates represent platform activity and are not accredited professional qualifications.</p></div></main>}
