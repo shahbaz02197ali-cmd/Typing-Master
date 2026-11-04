@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { siteName, siteUrl } from "@/lib/site";
+import ThemeToggle from "@/components/ThemeToggle";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -21,7 +22,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <header className="site-header">
       <Link href="/" className="brand-mark"><span className="brand-symbol">T<span>M</span></span><span className="brand-name">TYPING<span>MASTER</span></span></Link>
       <nav className="main-nav" aria-label="Main navigation">{links.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}</nav>
-      <div className="header-actions"><Link href="/login" className="signin-link">Sign in</Link><Link href="/signup" className="btn btn-primary header-join">Join free <span>↗</span></Link></div>
+      <div className="header-actions"><ThemeToggle /><Link href="/login" className="signin-link">Sign in</Link><Link href="/signup" className="btn btn-primary header-join">Join free <span>↗</span></Link></div>
     </header>
     {children}
     <footer className="site-footer"><Link href="/" className="footer-brand">TYPING MASTER<span> / TRAINING ARENA</span></Link><span>Practice with purpose. Improve every day.</span><div className="footer-legal"><Link href="/privacy">Privacy Policy</Link><Link href="/terms">Terms of Service</Link></div><span>© {new Date().getFullYear()} Typing Master</span></footer>
