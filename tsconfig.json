@@ -1,12 +1,28 @@
 {
+  "extends": "@monkeytype/typescript-config/base.json",
   "compilerOptions": {
-    "target": "ES2017", "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true, "skipLibCheck": true, "strict": true,
-    "noEmit": true, "esModuleInterop": true, "module": "esnext",
-    "moduleResolution": "bundler", "resolveJsonModule": true,
-    "isolatedModules": true, "jsx": "preserve", "incremental": true,
-    "plugins": [{"name": "next"}], "paths": {"@/*": ["./src/*"]}
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "types": ["vite/client", "node"],
+    "moduleResolution": "Bundler",
+    "module": "ESNext",
+    "allowUmdGlobalAccess": true,
+    "target": "ES6",
+    "noEmit": true,
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
+    "paths": {
+      "virtual:language-hashes": [
+        "./src/ts/types/virtual-language-hashes.d.ts"
+      ],
+      "virtual:env-config": ["./src/ts/types/virtual-env-config.d.ts"]
+    }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "./src/**/*.ts",
+    "./src/**/*.tsx",
+    "./scripts/**/*.ts",
+    "vite-plugins/**/*.ts",
+    "vite.config.ts"
+  ],
+  "exclude": ["node_modules", "build", "setup-tests.ts", "./__tests__/**/*.*"]
 }
