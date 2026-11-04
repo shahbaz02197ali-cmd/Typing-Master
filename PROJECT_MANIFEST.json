@@ -35,7 +35,23 @@
     "src/lib/supabase/server.ts",
     "supabase/migrations/001_initial.sql",
     "supabase/seed.sql",
-    "tsconfig.json"
+    "tsconfig.json",
+    ".github/workflows/ci.yml",
+    "docs/PHASE_1_AUDIT.md",
+    "src/app/auth/callback/route.ts",
+    "src/app/forgot-password/page.tsx",
+    "src/app/login/page.tsx",
+    "src/app/reset-password/page.tsx",
+    "src/app/robots.ts",
+    "src/app/signup/page.tsx",
+    "src/app/sitemap.ts",
+    "src/components/AccountProgress.tsx",
+    "src/components/AuthForm.tsx",
+    "src/components/SignOutButton.tsx",
+    "src/lib/site.ts",
+    "src/lib/supabase/client.ts",
+    "supabase/migrations/002_auth_profiles.sql",
+    "supabase/migrations/003_account_types.sql"
   ],
-  "note": "Starter project with functional local typing-test flows and initial database schema. Production-grade multiplayer/admin/backend sync still requires implementation and verification."
+  "note": "Phase 1 repository audit completed; starter functionality and known gaps are documented in docs/PHASE_1_AUDIT.md. This is not yet the full production learning platform."
 }
