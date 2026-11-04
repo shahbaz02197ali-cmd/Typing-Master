@@ -1,57 +1,38 @@
-# Typing Master — Phase 2 Authentication Setup
+# Typing Master — Supabase Authentication Setup
 
-The application code supports Supabase Auth with email/password and Google OAuth. Authentication will remain unavailable until the project owner completes these provider settings and adds the public project environment values.
+The app supports email/password and Google OAuth using Supabase Auth with PKCE sessions stored in cookies.
 
-## 1. Supabase project values
+## Supabase project keys
+In Supabase Project Settings → API Keys, use the project URL and a **publishable** key. In Vercel → Project → Settings → Environment Variables, configure:
+- NEXT_PUBLIC_SUPABASE_URL
+- NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
 
-1. Open the Supabase project for Typing Master.
-2. Go to Project Settings → API.
-3. Copy the Project URL and the publishable/anon public key.
-4. In Vercel, open the Typing Master project → Settings → Environment Variables.
-5. Add:
-   - `NEXT_PUBLIC_SUPABASE_URL` = Supabase Project URL
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY` = Supabase publishable/anon key
-6. Add them to Production, Preview and Development as appropriate, then redeploy.
+The legacy NEXT_PUBLIC_SUPABASE_ANON_KEY is supported as a fallback. Add values to Production and Preview as required, then redeploy. Never put a secret/service-role key in a NEXT_PUBLIC variable.
 
-Never put the Supabase service-role key in a `NEXT_PUBLIC_*` variable or in browser code. The current authentication flow does not need the service-role key.
+## Database
+Apply migrations 001 through 004 in order. The auth trigger creates a user profile and defaults account_type to student unless a valid account type is provided in signup metadata.
 
-## 2. Apply the database migration
+## Email/password
+Enable Email under Authentication → Sign In / Providers. Configure email confirmation and a verified SMTP sender for production. Set the Site URL to the canonical production domain and add:
+- https://YOUR-DOMAIN/auth/callback
+- https://YOUR-DOMAIN/** (only if additional in-app redirects are intentionally needed)
 
-Run `supabase/migrations/002_auth_profiles.sql` after the existing `001_initial.sql` migration. It creates the authenticated user profile table, row-level security policies and a profile creation trigger.
+## Google OAuth
+1. In Google Cloud Console, create an OAuth Client ID for a Web application.
+2. In Supabase → Authentication → Providers → Google, enable Google and add the Google Client ID and Client Secret.
+3. In Google Cloud Console, add the Supabase callback URL shown by Supabase (usually https://PROJECT_REF.supabase.co/auth/v1/callback) as an Authorized redirect URI. This is Google's callback, not the Typing Master callback.
+4. In Supabase → Authentication → URL Configuration, set the production Site URL and add the exact Typing Master callback URL: https://YOUR-DOMAIN/auth/callback.
+5. Ensure the OAuth consent screen is published or add test users while the app remains in testing.
+6. Save, then test Google signup and login in a private browser window.
 
-## 3. Email and password provider
+The app callback exchanges the one-time PKCE code and writes the resulting session cookies to the redirect response. Do not manually paste Google client secrets into source code or chat.
 
-In Supabase → Authentication → Providers, ensure Email is enabled. Configure the SMTP/email confirmation settings for production. For production email delivery, use a verified sender and a trusted SMTP provider.
+## Verification checklist
+- Email signup creates a profile with the selected Student or College Student account type.
+- Confirmation link returns to /auth/callback and reaches /dashboard.
+- Google first-time signup and returning-user login both reach /dashboard.
+- Signed-out access to /dashboard returns to /login.
+- Sign out clears the session.
+- Password recovery returns to /reset-password and allows a new password.
 
-## 4. URL configuration
-
-In Supabase → Authentication → URL Configuration:
-- Set Site URL to the production Typing Master domain.
-- Add the exact redirect URL `https://YOUR-DOMAIN/auth/callback`.
-- Add the Vercel preview callback URL only if preview sign-in is needed.
-
-The callback exchanges the one-time authorization code and accepts only safe internal next paths.
-
-## 5. Google OAuth
-
-1. In Google Cloud Console, create an OAuth Client ID of type Web application.
-2. Add the Supabase Auth callback URL shown in Supabase → Authentication → Providers → Google as an Authorized redirect URI.
-3. Copy the Google Client ID and Client Secret into the Google provider settings in Supabase.
-4. Enable the Google provider.
-5. Ensure the Typing Master callback URL is allow-listed in Supabase URL Configuration.
-
-Do not share Google client secrets or account passwords in chat.
-
-## 6. Test the flow
-
-- Create a new account at `/signup`.
-- Verify the email if confirmation is enabled.
-- Sign in at `/login`.
-- Try Google sign-in after enabling the provider.
-- Use Forgot password and complete the reset at `/reset-password`.
-- Visit `/dashboard` while signed out; it should redirect to sign-in.
-- Sign out and confirm the session ends.
-
-## Current scope
-
-This phase adds account creation, sign-in, Google OAuth initiation, email confirmation callback, password recovery, protected dashboard entry, sign-out and authenticated profile storage. The dashboard's cloud typing history, progress analytics and guest-result migration are Phase 3.
+Google provider credentials and allowed redirect URLs are external Supabase/Google settings; a code deployment cannot create those credentials automatically.
