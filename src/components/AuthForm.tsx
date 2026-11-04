@@ -13,6 +13,7 @@ export default function AuthForm({ mode }: { mode: AuthMode }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [accountType, setAccountType] = useState<"student" | "college_student">("student");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
@@ -31,7 +32,7 @@ export default function AuthForm({ mode }: { mode: AuthMode }) {
     const result = isSignup
       ? await supabase.auth.signUp({
           email, password, options: {
-            data: { display_name: name.trim() },
+            data: { display_name: name.trim(), account_type: accountType },
             emailRedirectTo: redirectTo,
           },
         })
@@ -73,7 +74,7 @@ export default function AuthForm({ mode }: { mode: AuthMode }) {
       <button type="button" className="btn auth-google" onClick={googleSignIn} disabled={busy}>Continue with Google</button>
       <div className="auth-divider"><span>OR CONTINUE WITH EMAIL</span></div>
       <form onSubmit={submit} className="auth-form">
-        {isSignup && <label>Full name<input autoComplete="name" value={name} onChange={(e) => setName(e.target.value)} required minLength={2} maxLength={60} placeholder="Your name" /></label>}
+        {isSignup && <><label>Full name<input autoComplete="name" value={name} onChange={(e) => setName(e.target.value)} required minLength={2} maxLength={60} placeholder="Your name" /></label><label>Account type<select value={accountType} onChange={(e) => setAccountType(e.target.value as "student" | "college_student")} required><option value="student">Student</option><option value="college_student">College Student</option></select></label></>}
         <label>Email address<input type="email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} required placeholder="you@example.com" /></label>
         <label>Password<input type="password" autoComplete={isSignup ? "new-password" : "current-password"} value={password} onChange={(e) => setPassword(e.target.value)} required minLength={8} placeholder="At least 8 characters" /></label>
         {!isSignup && <div className="auth-forgot"><Link href="/forgot-password">Forgot password?</Link></div>}
