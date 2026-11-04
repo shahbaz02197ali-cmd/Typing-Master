@@ -1,3 +1,3 @@
- "use client";
+"use client";
 import TypingTest from "@/components/TypingTest";
-export default function MarathonPage(){return <main className="shell"><div className="kicker">Endurance challenge</div><h1>10,000-word marathon</h1><p className="muted">A long practice session with progress tracking. Keep this tab open while you type; browser-only checkpoint recovery is an area to validate before production launch.</p><div className="card"><span className="pill">Long-form practice</span><h2>Ready for the challenge?</h2><p className="muted">This starter generates a long repeated passage for endurance testing. It is practice content, not 10,000 unique curated words.</p><TypingTest marathon initialSeconds={3600}/></div></main>}
+export default function MarathonPage(){return <main className="shell"><div className="kicker">LONG-FORM READING & TYPING</div><h1>Book-length typing marathon</h1><p className="muted">Choose a story, poem, article or other reading style, then work through 10,000 or 20,000 words paragraph by paragraph. Progress and accuracy remain visible throughout.</p><TypingTest marathon initialSeconds={3600}/></main>}
