@@ -136,3 +136,6 @@ textarea{resize:vertical}
 .auth-success{color:#a8f2d1;background:rgba(72,210,151,.09);border:1px solid rgba(72,210,151,.2)}
 .auth-dashboard{max-width:760px;margin:35px auto}
 @media(max-width:600px){.auth-card{padding:23px 19px}.auth-shell{padding-top:32px}}
+
+.auth-form select{width:100%;min-height:44px;padding:11px 13px;border:1px solid rgba(151,173,208,.25);border-radius:9px;background:#0b1220;color:var(--ink);outline:none}
+.auth-form select:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(97,230,239,.1)}
