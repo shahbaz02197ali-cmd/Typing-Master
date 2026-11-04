@@ -16,10 +16,10 @@ export default function Home() {
       <section className="arena-hero">
         <div className="hero-copy">
           <div className="eyebrow"><span className="live-dot" /> THE NEXT LEVEL OF TYPING</div>
-          <h1>Every keystroke<br /><span>moves you forward.</span></h1>
-          <p className="hero-lede">Learn the skill. Build your speed. Own the keyboard. Train with guided lessons, timed tests and challenges made for every level.</p>
+          <h1>Free Online Typing Test<br /><span>Build speed. Improve accuracy.</span></h1>
+          <p className="hero-lede">Test your typing speed, learn touch typing and improve accuracy with guided lessons, timed WPM tests and daily practice for every skill level.</p>
           <div className="hero-actions">
-            <Link className="btn btn-primary btn-large" href="/test">Start typing <span aria-hidden="true">↗</span></Link>
+            <Link className="btn btn-primary btn-large" href="/test">Start free typing test <span aria-hidden="true">↗</span></Link>
             <Link className="btn btn-ghost btn-large" href="/learn">Explore lessons</Link>
           </div>
           <div className="hero-proof">
@@ -29,7 +29,7 @@ export default function Home() {
           </div>
         </div>
         <div className="hero-console" aria-label="Typing Master training preview">
-          <div className="console-top"><span className="console-label"><i /> LIVE TRAINING CONSOLE</span><span className="console-code">TM / 001</span></div>
+          <div className="console-top"><span className="console-label"><i /> TYPING TRAINING PREVIEW</span><span className="console-code">TM / 001</span></div>
           <div className="console-score"><div><span className="console-caption">YOUR NEXT PERSONAL BEST</span><strong>60<span> WPM</span></strong></div><div className="score-ring"><span>98<small>%</small></span><em>ACCURACY</em></div></div>
           <div className="keyboard-window">
             <div className="keyboard-line"><span>Q</span><span>W</span><span className="key-lit">E</span><span>R</span><span>T</span><span>Y</span><span>U</span><span>I</span><span>O</span><span>P</span></div>
@@ -52,11 +52,11 @@ export default function Home() {
       </section>
 
       <section className="program-section">
-        <div className="section-heading"><div><span className="section-kicker">YOUR TRAINING HUB</span><h2>One platform. Every level.</h2></div><p>From your first lesson to your next typing milestone, everything you need is in one place.</p></div>
+        <div className="section-heading"><div><span className="section-kicker">YOUR TRAINING HUB</span><h2>Typing lessons, tests and practice for every level</h2></div><p>From your first lesson to your next typing milestone, build speed and accuracy with free online training.</p></div>
         <div className="program-grid">{paths.map((item) => <Link href={item.href} className="program-card" key={item.number}><div className="program-card-top"><span>{item.number}</span><small>{item.tag}</small></div><h3>{item.title}</h3><p>{item.text}</p><div className="program-link">Explore module <b>↗</b></div></Link>)}</div>
       </section>
 
-      <section className="progress-banner"><div><span className="section-kicker">START SMALL. GET FASTER.</span><h2>Your next level starts<br />with one session.</h2><p>Practice without signing up. Create a guest profile when you want to keep your results on this device.</p><Link href="/test" className="btn btn-primary">Enter the typing arena ↗</Link></div><div className="progress-graphic"><div className="progress-ring"><span>01</span><small>LEVEL</small></div><div className="progress-track"><i /></div><div className="progress-caption">BUILD YOUR MOMENTUM</div></div></section>
+      <section className="progress-banner"><div><span className="section-kicker">START SMALL. GET FASTER.</span><h2>Your next level starts<br />with one session.</h2><p>Practice without signing up. Create a guest profile when you want to keep your results on this device.</p><Link href="/test" className="btn btn-primary">Take a free typing test ↗</Link></div><div className="progress-graphic"><div className="progress-ring"><span>01</span><small>LEVEL</small></div><div className="progress-track"><i /></div><div className="progress-caption">BUILD YOUR MOMENTUM</div></div></section>
       <section className="guest-section"><GuestGate /></section>
     </main>
   );
