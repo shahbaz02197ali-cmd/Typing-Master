@@ -3,6 +3,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import SignOutButton from "@/components/SignOutButton";
+import AccountProgress from "@/components/AccountProgress";
 
 export const metadata: Metadata = { title: "Your dashboard", robots: { index: false, follow: false } };
 
@@ -17,6 +18,7 @@ export default async function DashboardPage() {
     <div className="row" style={{justifyContent:"space-between"}}><div className="kicker">YOUR WORKSPACE</div><SignOutButton /></div>
     <h1>Welcome, {displayName}</h1><p className="muted">You are signed in to Typing Master with {user.email}. Your account dashboard is ready for the next progress and history phase.</p>
     <div className="grid"><div className="card"><div className="muted">Account email</div><strong>{user.email}</strong></div><div className="card"><div className="muted">Account status</div><strong>Active session</strong></div></div>
-    <div className="row" style={{marginTop:22}}><Link className="btn btn-primary" href="/test">Start typing test ↗</Link><Link className="btn" href="/learn">Continue learning</Link></div>
+    <div className="row" style={{marginTop:22,marginBottom:22}}><Link className="btn btn-primary" href="/test">Start typing test ↗</Link><Link className="btn" href="/learn">Continue learning</Link></div>
+    <AccountProgress />
   </section></main>;
 }
